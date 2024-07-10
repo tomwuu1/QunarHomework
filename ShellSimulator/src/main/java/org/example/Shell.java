@@ -20,8 +20,12 @@ public class Shell {
         System.out.println("Enter a command to execute:");
         String command = scanner.nextLine();
         shell.execute(command);
-        /*shell.execute("cat xx.txt | grep xml | wc -l");
-        shell.execute("cat xx.txt");*/
+
+        /*
+        cat xx.txt | grep xml | wc -l
+        cat xx.txt
+        wc -l xx.txt
+         */
 
     }
 
@@ -36,7 +40,7 @@ public class Shell {
 
         input.forEach(System.out::println);
     }
-    // todo:策略模式
+
     private Command parseCommand(String commandStr) {
         if (commandStr.startsWith("cat")) {
             String filename = commandStr.split(" ")[1];
@@ -45,7 +49,13 @@ public class Shell {
             String keyword = commandStr.split(" ")[1];
             return new GrepCommand(keyword);
         } else if (commandStr.startsWith("wc -l")) {
-            return new WcCommand();
+            String[] parts = commandStr.split(" ");
+            if (parts.length > 2) {
+                String filename = parts[2];
+                return new WcCommand(filename);
+            } else {
+                return new WcCommand();
+            }
         }
         throw new UnsupportedOperationException("Unknown command: " + commandStr);
     }

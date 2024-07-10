@@ -2,7 +2,6 @@ package org.example;
 
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -10,7 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class TextDecrytion {
+/**
+ * @author 93253
+ */
+public class TextDecryption {
     private static final String PROP_FILE_PATH = "TextDecryption/src/main/resources/sdxl_prop.txt";
     private static final String TEMPLATE_FILE_PATH = "TextDecryption/src/main/resources/sdxl_template.txt";
     private static final String OUTPUT_FILE_PATH = "TextDecryption/src/main/resources/sdxl.txt";
